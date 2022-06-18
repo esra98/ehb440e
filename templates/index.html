@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+        *{
+            box-sizing: border-box;
+        }
+        :root {
+            --red: hsl(0, 100%, 74%) ;
+            --green: hsl(154, 59%, 51%);
+            --blue: hsl(248, 32%, 49%);
+            --grey: hsl(246, 25%, 77%);
+            --dark: hsl(249, 10%, 26%);
+            --bodyCopy: 16px;
+            --regular: 400;
+            --bold: 700;
+            --radius: 10px;
+        }
+        html,body{
+            font-family: 'Poppins',Arial, sans-serif;
+            background-color: var(--red);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            color: var(--dark);
+        }
+        body{
+            background-image: url('https://raw.githubusercontent.com/hejkeikei/intro-component-with-signup-form/main/images/bg-intro-desktop.png');
+            font-size: var(--bodyCopy);
+        }
+        main{
+            display: flex;
+            /* width: 100%; */
+            max-width: 110ch;
+            min-height: 95vh;
+            margin: 0 auto;
+            gap: 2rem;
+            justify-content: center;
+            padding: 1rem;
+        }
+        header,form >p:first-of-type,input[type=submit]{
+            color: white;
+        }
+        form,header{
+            flex-basis:0;
+            flex-grow: 1;
+        }
+        h1{
+            font-size: clamp(1.5rem, 5vw, 3rem);
+        }
+        a{
+            font-weight: bold;
+            color: var(--red);
+            text-decoration: none;
+        }
+        form >p:first-of-type{
+            background-color: var(--blue);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+        }
+        form div, form >p:first-of-type{
+            box-shadow: 0px 7px 0px rgba(0,0,0,0.2);
+        }
+        input{
+            display: block;
+            width: 100%;
+            margin: 1rem 0 .5rem 0;
+            padding: 1rem;
+            border: solid 1px var(--grey);
+            border-radius: calc(var(--radius)/2);
+            font-weight: var(--bold);
+            outline: none;
+        }
+        input[type=submit]{
+            background-color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            cursor: pointer;
+            font-size: medium;
+            box-shadow: inset 0px -4px rgba(0,0,0,0.1);
+            transition: all .2s ease-in-out;
+        }
+        input[type=submit]:hover{
+            box-shadow: inset 0px -6px rgba(0,0,0,0.1);
+        }
+        .errMsg{
+            text-align: right;
+            color: var(--red);
+            font-size: x-small;
+            font-style: italic;
+            font-weight: 500;
+            margin: 0 0 1rem 0;
+        }
+        .attribution a {
+            color: var(--blue);
+        }
+        #formPad{
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+        }
+        .dropDown{
+            display: block;
+            width: 100%;
+            margin: 1rem 0 0.5rem 0;
+            padding: 1rem;
+            border: solid 1px var(--grey);
+            border-radius: calc(var(--radius)/2);
+            font-weight: var(--bold);
+            outline: none;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        @media screen and (max-width:660px) {
+            body{
+                background-image: url('https://raw.githubusercontent.com/hejkeikei/intro-component-with-signup-form/main/images/bg-intro-desktop.png');
+            }
+            main{
+                flex-direction: column;
+            }
+            header{text-align: center;}
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; color: white">Computer Aided Devices in Medicine<br> Term Project</h1>
+<main>
+
+
+    {% if disease!=""%}
+        <form method="post" enctype="multipart/form-data">
+        <p>RESULTS</p>
+        <div id="formPad" style="text-align: center">
+          {% if disease=="Healthy"%}
+                We couldn't match your inputs with any disease diagnosis, we assume you are healthy!
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+          {% else %}
+          <p>Your results are compatible with the persons who has diagnosed with {{disease}}.</p>
+            {% if disease=="COPD"%}
+            Chronic obstructive pulmonary disease (COPD) is a chronic inflammatory lung disease that causes obstructed airflow from the lungs. Symptoms include breathing difficulty, cough, mucus (sputum) production and wheezing.
+            <a href="https://www.mayoclinic.org/diseases-conditions/copd/symptoms-causes/syc-20353679#:~:text=Chronic%20obstructive%20pulmonary%20disease%20(COPD,(sputum)%20production%20and%20wheezing."> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="URTI"%}
+            An upper respiratory infection affects the upper part of your respiratory system, including your sinuses and throat. Upper respiratory infection symptoms include a runny nose, sore throat and cough. Treatment for upper respiratory infections often includes rest, fluids and over-the-counter pain relievers.
+            <a href="https://my.clevelandclinic.org/health/articles/4022-upper-respiratory-infection#:~:text=An%20upper%20respiratory%20infection%20affects,%2Dthe%2Dcounter%20pain%20relievers."> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="Bronchiectasis"%}
+            Bronchiectasis is a long-term condition where the airways of the lungs become widened, leading to a build-up of excess mucus that can make the lungs more vulnerable to infection. The most common symptoms of bronchiectasis include: a persistent cough that usually brings up phlegm (sputum) shortness of breath.
+            <a href="https://www.nhs.uk/conditions/bronchiectasis/#:~:text=Bronchiectasis%20is%20a%20long%2Dterm,shortness%20of%20breath"> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="Bronchiectasis"%}
+            Bronchiolitis is a common lung infection in young children and infants. It causes inflammation and congestion in the small airways (bronchioles) of the lung. Bronchiolitis is almost always caused by a virus. Typically, the peak time for bronchiolitis is during the winter months.
+            <a href="https://www.mayoclinic.org/diseases-conditions/bronchiolitis/symptoms-causes/syc-20351565"> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="Pneumonia"%}
+            Pneumonia is a form of acute respiratory infection that affects the lungs. The lungs are made up of small sacs called alveoli, which fill with air when a healthy person breathes. When an individual has pneumonia, the alveoli are filled with pus and fluid, which makes breathing painful and limits oxygen intake.
+            <a href="https://www.who.int/news-room/fact-sheets/detail/pneumonia#:~:text=Pneumonia%20is%20a%20form%20of,painful%20and%20limits%20oxygen%20intake."> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="LRTI"%}
+            Lower respiratory tract infection (LRTI) is a broad terminology which includes acute bronchitis, pneumonia, acute exacerbations of chronic obstructive pulmonary disease/chronic bronchitis (AECB), and acute exacerbation of bronchiectasis.
+            <a href="https://en.wikipedia.org/wiki/Lower_respiratory_tract_infection"> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+            {% if disease=="Asthma"%}
+            Asthma is a condition in which your airways narrow and swell and may produce extra mucus. This can make breathing difficult and trigger coughing, a whistling sound (wheezing) when you breathe out and shortness of breath. For some people, asthma is a minor nuisance.
+            <a href="https://www.mayoclinic.org/diseases-conditions/asthma/symptoms-causes/syc-20369653#:~:text=Asthma%20is%20a%20condition%20in,asthma%20is%20a%20minor%20nuisance."> For more info click here.</a>
+            <p style="color: var(--red)">Please consult your doctor, this result is merely a prediction!</p>
+            {% endif %}
+          {% endif %}
+            <form method="get" enctype="multipart/form-data">
+                <input type="submit" value="Go Back Home" id="submit" />
+            </form>
+        </div>
+      </form>
+    {% else %}
+        <header>
+            <p>
+              In this project, we aim to examine respiratory sounds of an individual using Machine Learning and audio signal processing techniques
+                to diagnose if the individual has any of lung diseases classified and trained beforehand which are as follows:
+            </p>
+            <ul>
+              <li>COPD </li>
+              <li>URTI </li>
+              <li>Bronchiectasis</li>
+              <li>Bronchiolitis </li>
+              <li>Pneumonia  </li>
+              <li>LRTI </li>
+              <li>Asthma </li>
+            </ul>
+            <p>
+                To perform diagnosis the model requires to be fed with personal information such as age, sex, weight, height and respiratory audio
+                file of the individual uploaded to the website as a WAV file.
+            </p>
+            <p>
+                This project is an extension of previously carried out academic research, the Github repository of which could be accessed by
+                clicking <a href="https://github.com/rannilo/respiratory-disease-prediction" target="_blank" style="color: var(--blue);">here</a>.
+                In scope of this research, respiration sound files of patients diagnosed with lung disease and healthy individuals are collected alike
+                and speech processing techniques are applied on them. Using this dataset, we were able to employ ML techniques to diagnose the
+                sound files uploaded to the website by users.
+            </p>
+          </header>
+        <form method="post" enctype="multipart/form-data">
+        <p>Enter your personal info.</p>
+        <div id="formPad">
+          <input
+            type="text"
+            name="age"
+            id="fname"
+            placeholder="Age"
+            required
+          />
+          <select name="gender" selected="chose..." class="dropDown">
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+          </select>
+          <p class="errMsg"></p>
+          <input
+            type="text"
+            name="height"
+            id="height"
+            placeholder="Height in cm"
+            required
+          />
+          <input
+            type="text"
+            name="weight"
+            id="weight"
+            placeholder="Weight in kg"
+            required
+          />
+          <p>Choose audio file contains your breathing sound:</p>
+          <label class="custom-file-upload">
+              <input type="file" name="file"/>
+                Upload
+          </label>
+          <input type="submit" value="Examine" id="submit" />
+        </div>
+      </form>
+    {% endif %}
+    </main>
+</body>
+</html>
